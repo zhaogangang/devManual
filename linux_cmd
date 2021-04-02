@@ -1,3 +1,7 @@
+// discovery.service: Failed to execute command: Permission denied
+// systemctl if occur upon error
+restorecon -rv /usr/local/bin/
+
 // clear buff/cache
 echo 1 > /proc/sys/vm/drop_caches
 
