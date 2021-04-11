@@ -1,3 +1,6 @@
+// install minikube by use ali mirror
+sudo  minikube start image-mirror-country=cn --registry-mirror=https://xxx.mirror.aliyuncs.com --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso
+
 // discovery.service: Failed to execute command: Permission denied
 // systemctl if occur upon error
 restorecon -rv /usr/local/bin/
@@ -2233,3 +2236,38 @@ return          return             // return current function directly
 jump            j                  // jump to designate row or addr
 show args                          // show command args
 set args                           // set command args
+
+docker 
+docker images                                                                       // show all image
+docker build -t image-name .                                                        // build a image for cwd
+docker run image-name:<tag>                                                         // temporary run a image by a container, if $tag is omit, will be use latest
+docker run --name image-container -p 8080:8080 -t image-name                        // run a container by image-container name and share host port 8080 to container 8080 port for image-name image
+docker rm image-contianer                                                           // remove contianer
+docker rmi iamge-name                                                               // remove image
+docker ps -a                                                                        // show all contianer and container status
+docker tag image image/image                                                        // add another tag
+docker stop image-container                                                         // stop container
+docker start image-container                                                        // start container
+docker exec -it image-container bash                                                // run bash in image-container, -i open iostream, -t open a tty
+
+minikube start                                                                      // start a cluster 
+kubectl cluster-info                                                                // show cluster information
+kubectl get nodes                                                                   // show all node status
+kubectl get pods                                                                    // show all pod status 
+kubectl describe node node-name                                                     // show node detail 
+kubectl run kubia --image=kubia --port=8080                                         // create pod kubia by image kubia port is 8080
+kubectl get svc                                                                     // get services 
+kubectl get rc                                                                      // get resource controller
+kubectl create -f kubia-manual.yaml                                                 // create pod by kubia-manual content
+kubectl get pod kubia-manual -o [yaml|json]                                         // get kubia-manual pod yaml config or json
+kubectl logs pod-name -c container-name                                             // get container-name log in pod-name
+kubetcl get pods --show-labels                                                      // get pods and it's label
+kubetcl get pods -L label-name,label-name                                           // get pods and it's label label-name
+kubectl label pod kubia-manual creation-method=manual                               // add label for pod
+kubectl label pod kubia-manual-v2 env=debug --overwrite                             // modify label always add overwrite tag
+kubectl label node centos7 gpu=true                                                 // add label for node centos7
+kubectl delete pod kubia-manual                                                     // delete kubia-manual pod
+kubectl delete namespace custom-namespace                                           // delete namespace and it's node
+kubectl edit rc kubia                                                               // modify replication controler config
+kubectl exec pod-name -- curl -s http://ip                                          // execute command in pod pod-name, (--) mean kubectl command is finished, continuous command is to executed command
+kubectl exec -it pod-name bash                                                      // run bash in pod 
