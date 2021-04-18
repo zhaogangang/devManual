@@ -2262,6 +2262,7 @@ kubectl create -f kubia-manual.yaml                                             
 kubectl get pod kubia-manual -o [yaml|json]                                         // get kubia-manual pod yaml config or json
 kubectl logs pod-name -c container-name                                             // get container-name log in pod-name
 kubetcl get pods --show-labels                                                      // get pods and it's label
+kubetcl get pods -o wide                                                            // get pods more information
 kubetcl get pods -L label-name,label-name                                           // get pods and it's label label-name
 kubectl label pod kubia-manual creation-method=manual                               // add label for pod
 kubectl label pod kubia-manual-v2 env=debug --overwrite                             // modify label always add overwrite tag
@@ -2271,3 +2272,16 @@ kubectl delete namespace custom-namespace                                       
 kubectl edit rc kubia                                                               // modify replication controler config
 kubectl exec pod-name -- curl -s http://ip                                          // execute command in pod pod-name, (--) mean kubectl command is finished, continuous command is to executed command
 kubectl exec -it pod-name bash                                                      // run bash in pod 
+kubectl create configmap my-config --from-literal=sleep-interval=25                 // create my-config configmap from literal sleep-interval=25
+kubectl create configmap my-config --from-file=config-file.conf                     // create my-config configmap from file config-file.conf in current dir 
+kubectl create -f deployment.yaml --record                                          // add --record for history deploy
+kubectl rollout status deployment kubia                                             // display deploy status
+kubectl patch deploy kubia -p '{"spec": {"minReadySeconds": 10}}'                   // modify yaml part attributes
+kubectl apply -f kubia-deployment-v2.yaml                                           // apply a new yaml file
+kubectl replace -f kubia-deployment-v2.yaml                                         // replace a new yaml
+kubectl set image deploy kubia nodejs=luksa/kubia:v2                                // modify image
+kubectl rollout history deploy kubia                                                // show deploy history
+kubectl rollout undo deploy kubia                                                   // rollback last version
+kubectl rollout undo deploy kubia --to-revision=1                                   // rollback to design version
+kubectl rollout pause deploy kubia                                                  // just deploy part pod, temp pause remainder pod deploy
+kubectl rollout resume deploy kubia                                                 // deploy all remainder pod
