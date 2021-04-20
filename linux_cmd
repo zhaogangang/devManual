@@ -1,7 +1,10 @@
-// install minikube by use ali mirror
-sudo  minikube start image-mirror-country=cn --registry-mirror=https://xxx.mirror.aliyuncs.com --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso
+// watch port status 
+netstat -ltnp | grep 80
 
-// discovery.service: Failed to execute command: Permission denied
+// watch port status mast be root privilege
+sudo lsof -i:80
+
+// XXX.service: Failed to execute command: Permission denied
 // systemctl if occur upon error
 restorecon -rv /usr/local/bin/
 
@@ -2249,6 +2252,9 @@ docker tag image image/image                                                    
 docker stop image-container                                                         // stop container
 docker start image-container                                                        // start container
 docker exec -it image-container bash                                                // run bash in image-container, -i open iostream, -t open a tty
+
+// install minikube by use ali mirror
+sudo  minikube start image-mirror-country=cn --registry-mirror=https://xxx.mirror.aliyuncs.com --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso
 
 minikube start                                                                      // start a cluster 
 kubectl cluster-info                                                                // show cluster information

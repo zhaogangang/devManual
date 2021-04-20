@@ -552,3 +552,6 @@ Ctrl+] 跳转到tag主题，Ctrl+t 跳回。
 :ver 显示版本信息。
 15.4 一些小功能
 简单计算器: 在插入模式下，输入C-r =，然后输入表达式，就能在 光标处得到计算结果。
+C-r=0b10                            // binary convert to digital in insert mode or command mode
+:echo 0b10                          // binary conver to digital
+:echo printf("%b", 100)             // 100 convert to binary
