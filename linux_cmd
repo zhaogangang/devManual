@@ -2267,9 +2267,9 @@ kubectl get rc                                                                  
 kubectl create -f kubia-manual.yaml                                                 // create pod by kubia-manual content
 kubectl get pod kubia-manual -o [yaml|json]                                         // get kubia-manual pod yaml config or json
 kubectl logs pod-name -c container-name                                             // get container-name log in pod-name
-kubetcl get pods --show-labels                                                      // get pods and it's label
-kubetcl get pods -o wide                                                            // get pods more information
-kubetcl get pods -L label-name,label-name                                           // get pods and it's label label-name
+kubectl get pods --show-labels                                                      // get pods and it's label
+kubectl get pods -o wide                                                            // get pods more information
+kubectl get pods -L label-name,label-name                                           // get pods and it's label label-name
 kubectl label pod kubia-manual creation-method=manual                               // add label for pod
 kubectl label pod kubia-manual-v2 env=debug --overwrite                             // modify label always add overwrite tag
 kubectl label node centos7 gpu=true                                                 // add label for node centos7
@@ -2291,3 +2291,6 @@ kubectl rollout undo deploy kubia                                               
 kubectl rollout undo deploy kubia --to-revision=1                                   // rollback to design version
 kubectl rollout pause deploy kubia                                                  // just deploy part pod, temp pause remainder pod deploy
 kubectl rollout resume deploy kubia                                                 // deploy all remainder pod
+kubectl cp foo-pod:/var/log/foo.log foo.lo                                          // copy file to local from pod
+kubectl cp localfile foo-pod:/etc/remotefile                                        // copy file to pod from local
+
